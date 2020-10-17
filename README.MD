@@ -17,6 +17,7 @@ Khi vào link này thì nó redirect sang trang này. Hừmmm
 http://27.32.87.34.bc.googleusercontent.com/?page=home
 
 ![](./img/home.png?raw=true)
+
 Đầu tiên mình nghĩ tới việc dùng Path traversal.
 
 ![](./img/url_traversal.png?raw=true)
@@ -152,22 +153,28 @@ echo '</h3>';
 
 1/ Đầu tiên là file index.php
 ![](./img/index_php.png?raw=true)
+
 Có lẽ chỉ cần bypass qua được cái strpos và strtolower là có thể lấy được source của file secret.php (nơi chứa flag)
 Nhưng rất tiếc, sau một đống thời gian tìm và thử => No hope :(
 
 Trong file home.php
 ![](./img/home_php.png?raw=true)
+
 Trong này chả có gì nhiều. Ta chỉ biết được là đăng nhập bằng admin được thì có flag thôi.
 
 Tiếp theo là trong file register.php
 ![](./img/register_php.png?raw=true)
+
 Trong này ta chỉ nên chú ý một đoạn là đoạn nhập form
 Username và password được pattern trong khoảng từ a-h và từ 0-9 với độ dài trong khoảng 4-7.
 Không biết ban tổ chức có lừa mình không. Nhưng mong là password của admin cũng thỏa mãn điều kiện này để bruce force.
   
 Tiếp theo là trong file login.php
 ![](./img/login_php.png?raw=true)
+
 Úi chà, có được password sau khi md5 là 'c3cef6586e2e5705d9ed18ba8f4346c0' luôn. Giờ decrypto cái password chắc ra được mật khẩu.
+
+### Code:
 Mình code một đoạn để "chó ngáp phải ruồi" thôi. Chạy mà lòng mong BTC không lừa mình.
 
 ```python
