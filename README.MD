@@ -36,7 +36,7 @@ Giờ tao lấy hết source code của nó.
 
 Ta chú ý các đoạn source sau
 -Trong file index:
-'''php
+```php
     if(isset($_GET["page"]) && !empty($_GET["page"]))
   {
     if( strpos(strtolower($_GET["page"]), "secret") !== false)
@@ -49,9 +49,9 @@ Ta chú ý các đoạn source sau
   {
     header("Location: ?page=home");
   }
-'''
+```
 - Trong file home:
-'''php
+```php
 <?php 
 			include('secret.php');
 			echo '<h3>';
@@ -66,11 +66,11 @@ Ta chú ý các đoạn source sau
 			echo '</h3>';
 		?>
 
-'''
+```
 
 -Trong file login.php
 
-'''php
+```php
 if(isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) && isset($_POST["token"]))
 {
 	if($_SESSION["form_token"]===$_POST["token"])
@@ -97,11 +97,11 @@ else
 	print("Hello, Login here <font color='green'>＼(＾▽＾)／</font>");
 }
 
-'''
+```
 
 Và cuối cùng là file register.php
 
-'''php
+```php
 <?php
 if (!defined('check_access')) 
 {
@@ -141,7 +141,7 @@ echo '</h3>';
 	</body>
 </html>
 
-'''
+```
 Đầu tiên là file index.php
 ![](./img/index_php.png?raw=true)
 Có lẽ chỉ cần bypass qua được cái strpos và strtolower là có thể lấy được source của file secret.php (nơi chứa flag)
@@ -162,7 +162,7 @@ Tiếp theo là trong file login.php
 Úi chà, có được password sau khi md5 là 'c3cef6586e2e5705d9ed18ba8f4346c0' luôn. Giờ decrypto cái password chắc ra được mật khẩu.
 Mình code một đoạn để "chó ngáp phải ruồi" thôi. Chạy mà lòng mong BTC không lừa mình.
 
-'''python
+```python
 import hashlib 
 import secrets
 res = "c3cef6586e2e5705d9ed18ba8f4346c0"
@@ -174,7 +174,7 @@ while True:
         break
     else:
         print(password + ": False")
-'''
+```
 
 Chạy một hồi thì ra được password là 143b4b3
 
