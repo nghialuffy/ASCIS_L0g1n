@@ -1,14 +1,17 @@
-#L0g1n - ASCIS
+# L0g1n - ASCIS
 
-link bài: http://27.32.87.34.bc.googleusercontent.com
+### Thể loaij: Web
 
-Gợi ý: Không có
+### Link bài: http://27.32.87.34.bc.googleusercontent.com
 
-Kiến thức:
+### Gợi ý: Không có
+
+### Kiến thức:
 - Path Traversal
 - PHP Wrappers and Protocols
 - Hash md5
 
+### Phân tích đề:
 Khi vào link này thì nó redirect sang trang này. Hừmmm
 
 http://27.32.87.34.bc.googleusercontent.com/?page=home
@@ -34,8 +37,9 @@ Giờ dùng base64 decode thôi.
 Lúc vào web để xem thì ta biết được nó có 3 trang: home, login, register với trang index nữa.
 Giờ tao lấy hết source code của nó.
 
-Ta chú ý các đoạn source sau
--Trong file index:
+Ta chú ý các đoạn source sau:
+
+1/ Trong file index.php
 ```php
     if(isset($_GET["page"]) && !empty($_GET["page"]))
   {
@@ -50,7 +54,8 @@ Ta chú ý các đoạn source sau
     header("Location: ?page=home");
   }
 ```
-- Trong file home:
+
+2/ Trong file home.php
 ```php
 <?php 
 			include('secret.php');
@@ -68,7 +73,7 @@ Ta chú ý các đoạn source sau
 
 ```
 
--Trong file login.php
+3/ Trong file login.php
 
 ```php
 if(isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["password"]) && !empty($_POST["password"]) && isset($_POST["token"]))
@@ -99,7 +104,7 @@ else
 
 ```
 
-Và cuối cùng là file register.php
+4/ Tring file register.php
 
 ```php
 <?php
@@ -142,7 +147,10 @@ echo '</h3>';
 </html>
 
 ```
-Đầu tiên là file index.php
+
+### Suy luận các thứ:
+
+1/ Đầu tiên là file index.php
 ![](./img/index_php.png?raw=true)
 Có lẽ chỉ cần bypass qua được cái strpos và strtolower là có thể lấy được source của file secret.php (nơi chứa flag)
 Nhưng rất tiếc, sau một đống thời gian tìm và thử => No hope :(
@@ -179,7 +187,6 @@ while True:
 Chạy một hồi thì ra được password là 143b4b3
 
 
-
 Vào trang login submit với username = admin và password = 143b4b3 thôiiii.
 ![](./img/logged_in.png?raw=true)
 
@@ -189,4 +196,4 @@ Vào lại home:
 
 Flag:  ASCIS{__Hav3_Y0u_Heard_Ab0ut__HTML_PATT3rN?_} 
 
-Khá toang. Anyway, THIS IS THE ENDGAME!!!!
+# Khá toang. Anyway, THIS IS THE ENDGAME!!!!
