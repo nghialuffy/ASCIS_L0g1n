@@ -25,7 +25,6 @@ if(isset($_POST["username"]) && !empty($_POST["username"]) && isset($_POST["pass
   		unset($_SESSION['form_token']);
   		$_SESSION["form_token"] = md5(uniqid(rand(), true));
   		if ($_POST["username"] === "admin" && md5($_POST["password"]) === "c3cef6586e2e5705d9ed18ba8f4346c0")
-        //   ) || true #)
         {
   			$_SESSION['user'] = "admin";
   			print("Ok... Have a good day!");
